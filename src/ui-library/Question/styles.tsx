@@ -17,6 +17,15 @@ export const NumberOfQuestion = styled.small`
   margin-bottom: 12px;
 `;
 
+export const ErrorMessage = styled.p`
+  color: #ee5454;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%; /* 18px */
+  gap: 8px;
+`;
+
 export const QuestionContainer = styled.div`
   &.fade-enter {
     opacity: 0;

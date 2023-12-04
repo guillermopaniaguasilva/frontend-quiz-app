@@ -1,3 +1,4 @@
+import iconError from 'assets/icon-error.svg';
 import { useRef, useState } from 'react';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import { QuizzQuestion } from 'types/quizz';
@@ -5,7 +6,12 @@ import Button from 'ui-library/Button';
 import ProgressBar from 'ui-library/ProgressBar';
 import QuestionOption from 'ui-library/QuestionOption';
 import { useQuizzStore } from '../../pages/Quizz/store';
-import { NumberOfQuestion, QuestionContainer, Title } from './styles';
+import {
+  ErrorMessage,
+  NumberOfQuestion,
+  QuestionContainer,
+  Title,
+} from './styles';
 
 type QuestionProps = {
   data: QuizzQuestion;
@@ -23,6 +29,8 @@ export default function Question({
   const [isAnswerWrong, setIsAnswerWrong] = useState<boolean>(false);
   const [showCorrectAnswer, setShowCorrectAnswer] = useState<boolean>(false);
   const [hasSubittedAnswer, setHasSubmitted] = useState<boolean>(false);
+  const [isAnswerRequiredError, setIsAnswerRequiredError] =
+    useState<boolean>(false);
 
   const increaseScore = useQuizzStore((state) => state.increaseScore);
   const score = useQuizzStore((state) => state.score);
@@ -35,6 +43,7 @@ export default function Question({
   const nodeRef = hasSubittedAnswer ? nextQuestionRef : currentQuestionRef;
 
   const onSubmitAnswer = () => {
+    if (selectedQuestion === '') return setIsAnswerRequiredError(true);
     if (selectedQuestion === answer) {
       setIsAnswerCorrect(true);
       setIsAnswerWrong(false);
@@ -50,6 +59,7 @@ export default function Question({
   const goToNextQuestion = () => {
     // reset state
     setHasSubmitted(false);
+    setSelectedQuestion('');
     setIsAnswerCorrect(false);
     setIsAnswerWrong(false);
     setShowCorrectAnswer(false);
@@ -67,7 +77,10 @@ export default function Question({
         iconText={options[i]}
         text={option}
         value={option}
-        onSelection={() => setSelectedQuestion(option)}
+        onSelection={() => {
+          setIsAnswerRequiredError(false);
+          setSelectedQuestion(option);
+        }}
         isSelected={selectedQuestion === option}
         isCorrect={isAnswerCorrect && selectedQuestion === option}
         isWrong={isAnswerWrong && selectedQuestion === option}
@@ -102,6 +115,19 @@ export default function Question({
             <Button onClick={goToNextQuestion}>See Results</Button>
           ) : (
             <Button onClick={goToNextQuestion}>Next Question</Button>
+          )}
+          {isAnswerRequiredError && (
+            <div className="d-flex justify-content-center align-items-center mt-2">
+              <img
+                src={iconError}
+                alt="AnswerRequiredError"
+                width={32}
+                height={32}
+              />
+              <ErrorMessage className="m-0">
+                Please select an answer
+              </ErrorMessage>
+            </div>
           )}
         </QuestionContainer>
       </CSSTransition>
