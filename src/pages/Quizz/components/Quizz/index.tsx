@@ -13,9 +13,9 @@ export default function Quizz({ data, setSubject }: QuizzProps) {
 
   useEffect(() => {
     setSubject && setSubject();
-  }, []);
+  }, [setSubject]);
 
-  if (currentQuestion === 10) return <Score />;
+  if (currentQuestion === 0) return <Score />;
 
   return (
     <Question

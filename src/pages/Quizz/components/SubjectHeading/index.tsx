@@ -9,7 +9,11 @@ type IconDictionary = {
   [key: string]: [string, string];
 };
 
-export default function SubjectHeading() {
+type SubjectHeadingProps = {
+  className?: string;
+};
+
+export default function SubjectHeading({ className }: SubjectHeadingProps) {
   const subject = useQuizzStore((state) => state.subject);
   const iconDictionary: IconDictionary = {
     HTML: [htmlIcon, '#FFF1E9'],
@@ -20,7 +24,7 @@ export default function SubjectHeading() {
 
   return (
     subject && (
-      <div className="d-flex" style={{ gap: '16px' }}>
+      <div className={`d-flex ${className}`} style={{ gap: '16px' }}>
         <Badge
           source={iconDictionary[subject][0]}
           backgroundColor={iconDictionary[subject][1]}

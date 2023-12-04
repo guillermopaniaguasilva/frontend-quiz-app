@@ -91,7 +91,10 @@ export default function Question({
         <QuestionContainer className="w-100" ref={nodeRef}>
           <NumberOfQuestion>{`Question ${questionNumber} of 10`}</NumberOfQuestion>
           <Title>{question}</Title>
-          <ProgressBar percentage={+questionNumber * 10} />
+          <ProgressBar
+            style={{ marginTop: '24px', marginBottom: '40px' }}
+            percentage={+questionNumber * 10}
+          />
           {possibleAnswers}
           {!hasSubittedAnswer ? (
             <Button onClick={onSubmitAnswer}>Submit Answer</Button>

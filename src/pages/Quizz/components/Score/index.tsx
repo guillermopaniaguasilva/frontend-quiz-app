@@ -8,12 +8,12 @@ export default function Score() {
 
   return (
     <>
-      <Title>Quiz completed</Title>
-      <BoldedTitle>You scored...</BoldedTitle>
+      <Title className="align-self-start">Quiz completed</Title>
+      <BoldedTitle className="align-self-start">You scored...</BoldedTitle>
       <ResultCard className="">
         <div className="d-flex flex-column justify-content-center align-items-center">
           <div className="d-flex"></div>
-          <SubjectHeading />
+          <SubjectHeading className="mb-3" />
           <Number>{score}</Number>
           <p>out of 10</p>
         </div>
