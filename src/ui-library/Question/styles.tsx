@@ -16,3 +16,27 @@ export const NumberOfQuestion = styled.small`
   line-height: 150%; /* 21px */
   margin-bottom: 12px;
 `;
+
+export const QuestionContainer = styled.div`
+  &.fade-enter {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  &.fade-enter-active {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+  &.fade-exit {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+  &.fade-exit-active {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  &.fade-enter-active,
+  &.fade-exit-active {
+    transition: opacity 500ms, transform 500ms;
+  }
+`;

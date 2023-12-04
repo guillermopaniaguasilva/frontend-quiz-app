@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import { QuizzQuestion } from 'types/quizz';
 import Button from 'ui-library/Button';
 import ProgressBar from 'ui-library/ProgressBar';
 import QuestionOption from 'ui-library/QuestionOption';
 import { useQuizzStore } from '../../pages/Quizz/store';
-import { NumberOfQuestion, Title } from './styles';
+import { NumberOfQuestion, QuestionContainer, Title } from './styles';
 
 type QuestionProps = {
   data: QuizzQuestion;
@@ -28,6 +29,11 @@ export default function Question({
   const { question, answer, options } = data;
   const correctOption = options.find((option) => option === answer);
 
+  const currentQuestionRef = useRef<HTMLDivElement>(null);
+  const nextQuestionRef = useRef<HTMLDivElement>(null);
+
+  const nodeRef = hasSubittedAnswer ? nextQuestionRef : currentQuestionRef;
+
   const onSubmitAnswer = () => {
     if (selectedQuestion === answer) {
       setIsAnswerCorrect(true);
@@ -47,43 +53,55 @@ export default function Question({
     setIsAnswerCorrect(false);
     setIsAnswerWrong(false);
     setShowCorrectAnswer(false);
+
     onNextQuestion();
   };
 
   const possibleAnswers = (options || []).map((option, i) => {
     const options = ['A', 'B', 'C', 'D'];
     return (
-      <>
-        <QuestionOption
-          className="mb-2"
-          backgroundColor="#F4F6FA"
-          iconText={options[i]}
-          text={option}
-          value={option}
-          onSelection={() => setSelectedQuestion(option)}
-          isSelected={selectedQuestion === option}
-          isCorrect={isAnswerCorrect && selectedQuestion === option}
-          isWrong={isAnswerWrong && selectedQuestion === option}
-          showCorrectAnswer={showCorrectAnswer}
-          correctOption={correctOption}
-        />
-      </>
+      <QuestionOption
+        key={i}
+        className="mb-2"
+        backgroundColor="#F4F6FA"
+        iconText={options[i]}
+        text={option}
+        value={option}
+        onSelection={() => setSelectedQuestion(option)}
+        isSelected={selectedQuestion === option}
+        isCorrect={isAnswerCorrect && selectedQuestion === option}
+        isWrong={isAnswerWrong && selectedQuestion === option}
+        showCorrectAnswer={showCorrectAnswer}
+        correctOption={correctOption}
+      />
     );
   });
 
   return (
-    <div className="w-100">
-      <NumberOfQuestion>{`Question ${questionNumber} of 10`}</NumberOfQuestion>
-      <Title>{question}</Title>
-      <ProgressBar percentage={+questionNumber * 10} />
-      {possibleAnswers}
-      {!hasSubittedAnswer ? (
-        <Button onClick={onSubmitAnswer}>Submit Answer</Button>
-      ) : +questionNumber === 10 ? (
-        <Button onClick={goToNextQuestion}>See Results</Button>
-      ) : (
-        <Button onClick={goToNextQuestion}>Next Question</Button>
-      )}
-    </div>
+    <SwitchTransition mode="out-in">
+      <CSSTransition
+        key={questionNumber}
+        nodeRef={nodeRef}
+        addEndListener={(done) => {
+          if (nodeRef.current)
+            nodeRef.current.addEventListener('transitionend', done, false);
+        }}
+        classNames="fade"
+      >
+        <QuestionContainer className="w-100" ref={nodeRef}>
+          <NumberOfQuestion>{`Question ${questionNumber} of 10`}</NumberOfQuestion>
+          <Title>{question}</Title>
+          <ProgressBar percentage={+questionNumber * 10} />
+          {possibleAnswers}
+          {!hasSubittedAnswer ? (
+            <Button onClick={onSubmitAnswer}>Submit Answer</Button>
+          ) : +questionNumber === 10 ? (
+            <Button onClick={goToNextQuestion}>See Results</Button>
+          ) : (
+            <Button onClick={goToNextQuestion}>Next Question</Button>
+          )}
+        </QuestionContainer>
+      </CSSTransition>
+    </SwitchTransition>
   );
 }
