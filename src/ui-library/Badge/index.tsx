@@ -14,7 +14,7 @@ export default function Badge({
   label,
 }: BadgeProps): JSX.Element {
   return (
-    <Container backgroundColor={backgroundColor}>
+    <Container backgroundcolor={backgroundColor}>
       {source ? (
         <img src={source} alt={alt} width={21} height={21} />
       ) : (

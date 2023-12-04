@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
 export const Container = styled.div<{
-  backgroundColor: string;
+  backgroundcolor: string;
 }>`
   border-radius: 8px;
   padding: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${({ backgroundColor }) => backgroundColor};
+  background-color: ${({ backgroundcolor }) => backgroundcolor};
 `;
 
 export const Letter = styled.p`
