@@ -30,7 +30,6 @@ export default function Slot({
   className,
   value,
   icon,
-  isCorrect,
   isWrong,
   showCorrectAnswer,
   correctOption,
