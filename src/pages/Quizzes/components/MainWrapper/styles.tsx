@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,9 +11,6 @@ export const Container = styled.div`
   height: 100vh;
 `;
 
-export const MainContainer = styled.div`
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 100vh;
+export const Main = styled.main`
+  width: calc(100% - 48px);
 `;

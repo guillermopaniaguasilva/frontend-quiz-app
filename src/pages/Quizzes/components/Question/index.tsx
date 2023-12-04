@@ -5,7 +5,7 @@ import { QuizzQuestion } from 'types/quizz';
 import Button from 'ui-library/Button';
 import ProgressBar from 'ui-library/ProgressBar';
 import QuestionOption from 'ui-library/QuestionOption';
-import { useQuizzStore } from '../../pages/Quizz/store';
+import { useQuizzStore } from '../../store';
 import {
   ErrorMessage,
   NumberOfQuestion,

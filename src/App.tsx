@@ -1,10 +1,10 @@
-import Quizz from './pages/Quizz';
-import MainWrapper from './pages/Quizz/components/MainWrapper';
+import Quizzes from './pages/Quizzes';
+import MainWrapper from './pages/Quizzes/components/MainWrapper';
 
 export default function App() {
   return (
     <MainWrapper>
-      <Quizz />
+      <Quizzes />
     </MainWrapper>
   );
 }

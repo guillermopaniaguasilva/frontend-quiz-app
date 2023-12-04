@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Quizz as QuizzType } from 'types/quizz';
 import Slot from 'ui-library/Slot';
-import { useQuizzStore } from '.././../store';
+import { useQuizzStore } from '../../store';
 import Quizz from '../Quizz';
 import { BoldedTitle, Description, Title } from './styles';
 

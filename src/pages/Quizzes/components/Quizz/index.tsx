@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { QuizzCategory } from 'types/quizz';
-import Question from 'ui-library/Question';
+import Question from '../Question';
 import Score from '../Score';
 
 type QuizzProps = {

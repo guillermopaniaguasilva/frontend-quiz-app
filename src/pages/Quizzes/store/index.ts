@@ -1,4 +1,4 @@
-import { create } from 'zustand';
+import { StoreApi, UseBoundStore, create } from 'zustand';
 
 interface QuizzState {
   subject: string;
@@ -15,4 +15,8 @@ export const useQuizzStore = create<QuizzState>()((set) => ({
   increaseScore: (previousScore) => set(() => ({ score: previousScore + 1 })),
 }));
 
-(window as any).matchingStore = useQuizzStore;
+interface QuizzesWindow extends Window {
+  matchingStore?: UseBoundStore<StoreApi<QuizzState>>;
+}
+
+(window as QuizzesWindow).matchingStore = useQuizzStore;
