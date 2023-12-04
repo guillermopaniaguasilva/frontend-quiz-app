@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
-import { QuizzCategory } from 'types/quizz';
+import { QuizzCategory as QuizCategory } from 'types/quiz';
 import Question from '../Question';
 import Score from '../Score';
 
-type QuizzProps = {
-  data: QuizzCategory;
+type QuizProps = {
+  data: QuizCategory;
   setSubject: () => void;
 };
 
-export default function Quizz({ data, setSubject }: QuizzProps) {
+export default function Quiz({ data, setSubject }: QuizProps) {
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
 
   useEffect(() => {

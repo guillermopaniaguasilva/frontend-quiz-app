@@ -2,7 +2,7 @@ import accessibilityIcon from 'assets/icon-accessibility.svg';
 import cssIcon from 'assets/icon-css.svg';
 import htmlIcon from 'assets/icon-html.svg';
 import jsIcon from 'assets/icon-js.svg';
-import { Quizz } from 'types/quizz';
+import { Quizz } from 'types/quiz';
 
 export const data: Quizz = {
   quizzes: [

@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { Quizz as QuizzType } from 'types/quizz';
+import { Quizz as QuizzType } from 'types/quiz';
 import Slot from 'ui-library/Slot';
 import { useQuizzStore } from '../../store';
-import Quizz from '../Quizz';
+import Quiz from '../Quiz';
 import { BoldedTitle, Description, Title } from './styles';
 
 type HomeProps = {
@@ -15,7 +15,7 @@ export default function Home({ data }: HomeProps): JSX.Element {
 
   if (selection !== '')
     return (
-      <Quizz
+      <Quiz
         data={data.quizzes.find((quizz) => quizz.title == selection)!}
         setSubject={() => setSubject(selection)}
       />

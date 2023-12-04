@@ -1,7 +1,7 @@
 import iconError from 'assets/icon-error.svg';
 import { useRef, useState } from 'react';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
-import { QuizzQuestion } from 'types/quizz';
+import { QuizzQuestion } from 'types/quiz';
 import Button from 'ui-library/Button';
 import ProgressBar from 'ui-library/ProgressBar';
 import QuestionOption from 'ui-library/QuestionOption';
