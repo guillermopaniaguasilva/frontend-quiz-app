@@ -49,6 +49,7 @@ export default function Home({ data }: HomeProps): JSX.Element {
           backgroundColor={iconBackground}
           onSelection={setSelection}
           value={title}
+          darkTheme={darkTheme}
         />
       ))}
     </div>

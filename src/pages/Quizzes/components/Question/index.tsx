@@ -94,6 +94,7 @@ export default function Question({
         isWrong={isAnswerWrong && selectedQuestion === option}
         showCorrectAnswer={showCorrectAnswer}
         correctOption={correctOption}
+        darkTheme={darkTheme}
       />
     );
   });
