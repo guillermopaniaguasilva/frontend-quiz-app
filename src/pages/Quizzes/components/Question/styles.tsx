@@ -4,7 +4,7 @@ export const Title = styled.h4`
   color: ${({ theme }) => theme.colors.darkNavy};
   font-size: 20px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: ${({ theme }) => theme.fontWeights.normal};
   line-height: 120%; /* 24px */
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
@@ -18,16 +18,16 @@ export const NumberOfQuestion = styled.small`
   color: ${({ theme }) => theme.colors.greyNavy};
   font-size: 14px;
   font-style: italic;
-  font-weight: 400;
+  font-weight: ${({ theme }) => theme.fontWeights.light};
   line-height: 150%; /* 21px */
   margin-bottom: 12px;
 `;
 
 export const ErrorMessage = styled.p`
-  color: #ee5454;
+  color: ${({ theme }) => theme.colors.red};
   font-size: 18px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: ${({ theme }) => theme.fontWeights.light};
   line-height: 100%; /* 18px */
   gap: 8px;
 `;

@@ -22,7 +22,7 @@ export const Btn = styled.button`
   color: ${({ theme }) => theme.colors.white};
   font-size: 18px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: ${({ theme }) => theme.fontWeights.normal};
   line-height: 100%; /* 18px */
   width: 100%;
 `;

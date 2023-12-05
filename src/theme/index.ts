@@ -24,7 +24,9 @@ const fontSizes = {
 };
 
 const fontWeights = {
+  extraLight: 300,
   light: 400,
+  normal: 500,
   bold: 700,
 };
 
@@ -55,7 +57,9 @@ declare module 'styled-components' {
       heading: string;
     };
     fontWeights: {
+      extraLight: number;
       light: number;
+      normal: number;
       bold: number;
     };
     fontFamilies: {

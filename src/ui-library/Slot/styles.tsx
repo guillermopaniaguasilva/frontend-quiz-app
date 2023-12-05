@@ -15,7 +15,7 @@ export const Container = styled.div`
     padding: 20px;
     font-size: 28px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: ${({ theme }) => theme.fontWeights.normal};
     line-height: 100%; /* 28px */
   }
 `;

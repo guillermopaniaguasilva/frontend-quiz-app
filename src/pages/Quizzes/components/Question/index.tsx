@@ -3,10 +3,12 @@ import { useIsDesktopQuery } from 'hooks/useMediaQuery';
 import { useRef, useState } from 'react';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import { QuizzQuestion } from 'types/quiz';
-import Button from 'ui-library/Button';
-import ProgressBar from 'ui-library/ProgressBar';
-import QuestionOption from 'ui-library/QuestionOption';
-import DesktopLayout from 'ui-library/TwoColumnLayout';
+import {
+  Button,
+  TwoColumnLayout as DesktopLayout,
+  ProgressBar,
+  QuestionOption,
+} from 'ui-library/index';
 import { useQuizzStore } from '../../store';
 import {
   ErrorMessage,

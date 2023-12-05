@@ -2,7 +2,7 @@ import accessibilityIcon from 'assets/icon-accessibility.svg';
 import cssIcon from 'assets/icon-css.svg';
 import htmlIcon from 'assets/icon-html.svg';
 import jsIcon from 'assets/icon-js.svg';
-import Badge from 'ui-library/Badge';
+import { Badge } from 'ui-library/index';
 import { useQuizzStore } from '../../store';
 import { Subject } from './styles';
 

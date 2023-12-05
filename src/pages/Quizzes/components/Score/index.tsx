@@ -1,7 +1,6 @@
 import { useIsDesktopQuery } from 'hooks/useMediaQuery';
 import { useEffect, useState } from 'react';
-import Button from 'ui-library/Button';
-import DesktopLayout from 'ui-library/TwoColumnLayout';
+import { Button, TwoColumnLayout as DesktopLayout } from 'ui-library/index';
 import { useQuizzStore } from '../../store';
 import SubjectHeading from '../SubjectHeading';
 import {

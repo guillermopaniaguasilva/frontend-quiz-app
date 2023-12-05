@@ -1,8 +1,7 @@
 import { useIsDesktopQuery } from 'hooks/useMediaQuery';
 import { useState } from 'react';
 import { Quizz as QuizzType } from 'types/quiz';
-import Slot from 'ui-library/Slot';
-import DesktopLayout from 'ui-library/TwoColumnLayout';
+import { TwoColumnLayout as DesktopLayout, Slot } from 'ui-library/index';
 import { useQuizzStore } from '../../store';
 import Quiz from '../Quiz';
 import { BoldedTitle, Description, Title } from './styles';

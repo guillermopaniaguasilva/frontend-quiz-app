@@ -18,6 +18,6 @@ export const Letter = styled.p`
   text-align: center;
   font-size: 18px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: ${({ theme }) => theme.fontWeights.normal};
   line-height: 100%; /* 18px */
 `;
