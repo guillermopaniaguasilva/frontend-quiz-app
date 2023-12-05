@@ -1,5 +1,6 @@
 import correct from 'assets/icon-correct.svg';
 import Badge from 'ui-library/Badge';
+import { useQuizzStore } from '../../pages/Quizzes/store';
 import { Container } from './styles';
 
 export type SlotProps = {
@@ -18,6 +19,7 @@ export type SlotProps = {
   isWrong?: boolean;
   showCorrectAnswer?: boolean;
   correctOption?: string;
+  darkTheme: boolean;
 };
 
 export default function Slot({
@@ -34,8 +36,14 @@ export default function Slot({
   showCorrectAnswer,
   correctOption,
 }: SlotProps): JSX.Element {
+  const darkTheme = useQuizzStore((state) => state.darkTheme);
+
   return (
-    <Container className={className} onClick={() => onSelection(value)}>
+    <Container
+      darkTheme={darkTheme}
+      className={className}
+      onClick={() => onSelection(value)}
+    >
       {iconSource ? (
         <Badge
           source={iconSource}

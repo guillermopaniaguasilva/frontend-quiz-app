@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 
-export const Title = styled.h4`
-  color: ${({ theme }) => theme.colors.darkNavy};
+export const Title = styled.h4<{
+  darkTheme: boolean;
+}>`
+  color: ${({ theme, darkTheme }) =>
+    darkTheme ? theme.colors.white : theme.colors.darkNavy};
   font-size: 20px;
   font-style: normal;
   font-weight: ${({ theme }) => theme.fontWeights.normal};
@@ -14,8 +17,11 @@ export const Title = styled.h4`
   }
 `;
 
-export const NumberOfQuestion = styled.small`
-  color: ${({ theme }) => theme.colors.greyNavy};
+export const NumberOfQuestion = styled.small<{
+  darkTheme: boolean;
+}>`
+  color: ${({ theme, darkTheme }) =>
+    darkTheme ? theme.colors.lightBluish : theme.colors.greyNavy};
   font-size: 14px;
   font-style: italic;
   font-weight: ${({ theme }) => theme.fontWeights.light};
@@ -23,8 +29,11 @@ export const NumberOfQuestion = styled.small`
   margin-bottom: 12px;
 `;
 
-export const ErrorMessage = styled.p`
-  color: ${({ theme }) => theme.colors.red};
+export const ErrorMessage = styled.p<{
+  darkTheme: boolean;
+}>`
+  color: ${({ theme, darkTheme }) =>
+    darkTheme ? theme.colors.white : theme.colors.red};
   font-size: 18px;
   font-style: normal;
   font-weight: ${({ theme }) => theme.fontWeights.light};

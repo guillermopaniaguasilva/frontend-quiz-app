@@ -2,6 +2,7 @@ import iconError from 'assets/icon-error.svg';
 import { useIsDesktopQuery } from 'hooks/useMediaQuery';
 import { useRef, useState } from 'react';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
+import theme from 'theme/index';
 import { QuizzQuestion } from 'types/quiz';
 import {
   Button,
@@ -38,6 +39,7 @@ export default function Question({
 
   const increaseScore = useQuizzStore((state) => state.increaseScore);
   const score = useQuizzStore((state) => state.score);
+  const darkTheme = useQuizzStore((state) => state.darkTheme);
   const { question, answer, options } = data;
   const correctOption = options.find((option) => option === answer);
 
@@ -79,7 +81,7 @@ export default function Question({
       <QuestionOption
         key={i}
         className="mb-2"
-        backgroundColor="#F4F6FA"
+        backgroundColor={theme.colors.lightGrey}
         iconText={options[i]}
         text={option}
         value={option}
@@ -99,7 +101,9 @@ export default function Question({
   const errorMessage = isAnswerRequiredError && (
     <div className="d-flex justify-content-center align-items-center mt-2">
       <img src={iconError} alt="AnswerRequiredError" width={32} height={32} />
-      <ErrorMessage className="m-0">Please select an answer</ErrorMessage>
+      <ErrorMessage darkTheme={darkTheme} className="m-0">
+        Please select an answer
+      </ErrorMessage>
     </div>
   );
 
@@ -115,12 +119,13 @@ export default function Question({
         classNames="fade"
       >
         <QuestionContainer className="w-100" ref={nodeRef}>
-          {/* this changes */}
           {isDesktop ? (
             <DesktopLayout>
               <>
-                <NumberOfQuestion>{`Question ${questionNumber} of 10`}</NumberOfQuestion>
-                <Title>{question}</Title>
+                <NumberOfQuestion
+                  darkTheme={darkTheme}
+                >{`Question ${questionNumber} of 10`}</NumberOfQuestion>
+                <Title darkTheme={darkTheme}>{question}</Title>
                 <ProgressBar
                   style={{ marginTop: '164px', marginBottom: '40px' }}
                   percentage={+questionNumber * 10}
@@ -140,8 +145,10 @@ export default function Question({
             </DesktopLayout>
           ) : (
             <>
-              <NumberOfQuestion>{`Question ${questionNumber} of 10`}</NumberOfQuestion>
-              <Title>{question}</Title>
+              <NumberOfQuestion
+                darkTheme={darkTheme}
+              >{`Question ${questionNumber} of 10`}</NumberOfQuestion>
+              <Title darkTheme={darkTheme}>{question}</Title>
               <ProgressBar
                 style={{ marginTop: '24px', marginBottom: '40px' }}
                 percentage={+questionNumber * 10}
@@ -157,8 +164,6 @@ export default function Question({
               {errorMessage}
             </>
           )}
-
-          {/* up to here */}
         </QuestionContainer>
       </CSSTransition>
     </SwitchTransition>

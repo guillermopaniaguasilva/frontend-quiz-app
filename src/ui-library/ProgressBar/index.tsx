@@ -1,3 +1,4 @@
+import { useQuizzStore } from '../../pages/Quizzes/store';
 import { Bar, Container } from './styles';
 
 type ProgressBarProps = {
@@ -11,9 +12,11 @@ export default function ProgressBar({
   className,
   style,
 }: ProgressBarProps) {
+  const darkTheme = useQuizzStore((state) => state.darkTheme);
+
   return (
     <>
-      <Container style={style} className={className}>
+      <Container darkTheme={darkTheme} style={style} className={className}>
         <Bar percentage={percentage} />
       </Container>
     </>

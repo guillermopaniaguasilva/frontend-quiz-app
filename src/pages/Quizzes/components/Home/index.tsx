@@ -10,20 +10,10 @@ type HomeProps = {
   data: QuizzType;
 };
 
-const WelcomeSection = () => (
-  <>
-    <Title className="align-self-start">Welcome to the</Title>
-    <BoldedTitle className="align-self-start">Frontend Quiz!</BoldedTitle>
-    <Description className="align-self-start">
-      Pick a subject to get started.
-    </Description>
-  </>
-);
-
 export default function Home({ data }: HomeProps): JSX.Element {
   const [selection, setSelection] = useState<string>('');
   const setSubject = useQuizzStore((state) => state.setSubject);
-
+  const darkTheme = useQuizzStore((state) => state.darkTheme);
   const isDesktop = useIsDesktopQuery();
 
   if (selection !== '')
@@ -33,6 +23,20 @@ export default function Home({ data }: HomeProps): JSX.Element {
         setSubject={() => setSubject(selection)}
       />
     );
+
+  const WelcomeSection = () => (
+    <>
+      <Title darkTheme={darkTheme} className="align-self-start">
+        Welcome to the
+      </Title>
+      <BoldedTitle darkTheme={darkTheme} className="align-self-start">
+        Frontend Quiz!
+      </BoldedTitle>
+      <Description darkTheme={darkTheme} className="align-self-start">
+        Pick a subject to get started.
+      </Description>
+    </>
+  );
 
   const subjects = (
     <div className={isDesktop ? 'd-flex flex-column w-100' : ''}>

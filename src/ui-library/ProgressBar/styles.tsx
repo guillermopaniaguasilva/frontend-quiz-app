@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  background-color: ${({ theme }) => theme.colors.white};
+export const Container = styled.div<{
+  darkTheme: boolean;
+}>`
+  background-color: ${({ theme, darkTheme }) =>
+    darkTheme ? theme.colors.navy : theme.colors.white};
   width: 100%;
   height: 50px;
   display: flex;

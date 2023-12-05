@@ -16,6 +16,7 @@ export default function Score() {
   const [fadeIn, setFadeIn] = useState<boolean>(false);
 
   const score = useQuizzStore((state) => state.score);
+  const darkTheme = useQuizzStore((state) => state.darkTheme);
   const isDesktop = useIsDesktopQuery();
 
   useEffect(() => {
@@ -24,19 +25,23 @@ export default function Score() {
 
   const title = (
     <>
-      <Title className="align-self-start">Quiz completed</Title>
-      <BoldedTitle className="align-self-start">You scored...</BoldedTitle>
+      <Title darkTheme={darkTheme} className="align-self-start">
+        Quiz completed
+      </Title>
+      <BoldedTitle darkTheme={darkTheme} className="align-self-start">
+        You scored...
+      </BoldedTitle>
     </>
   );
 
   const result = (
     <>
-      <ResultCard className="mb-lg-4">
+      <ResultCard darkTheme={darkTheme} className="mb-lg-4">
         <div className="d-flex flex-column justify-content-center align-items-center">
           <div className="d-flex"></div>
           <SubjectHeading className="mb-3" />
-          <Number>{score}</Number>
-          <TotalQuestions>out of 10</TotalQuestions>
+          <Number darkTheme={darkTheme}>{score}</Number>
+          <TotalQuestions darkTheme={darkTheme}>out of 10</TotalQuestions>
         </div>
       </ResultCard>
       <Button onClick={() => window.location.reload()}>Play Again</Button>

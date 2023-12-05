@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 
-export const Subject = styled.p`
-  color: ${({ theme }) => theme.colors.darkNavy};
+export const Subject = styled.p<{
+  darkTheme: boolean;
+}>`
+  color: ${({ theme, darkTheme }) =>
+    darkTheme ? theme.colors.white : theme.colors.darkNavy};
   font-size: 18px;
   font-style: normal;
   font-weight: ${({ theme }) => theme.fontWeights.normal};

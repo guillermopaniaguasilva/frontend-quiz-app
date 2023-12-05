@@ -16,6 +16,7 @@ type SubjectHeadingProps = {
 
 export default function SubjectHeading({ className }: SubjectHeadingProps) {
   const subject = useQuizzStore((state) => state.subject);
+  const darkTheme = useQuizzStore((state) => state.darkTheme);
   const iconDictionary: IconDictionary = {
     HTML: [htmlIcon, '#FFF1E9'],
     CSS: [cssIcon, '#E0FDEF'],
@@ -34,7 +35,9 @@ export default function SubjectHeading({ className }: SubjectHeadingProps) {
           backgroundColor={iconDictionary[subject][1]}
           alt="test"
         />
-        <Subject className="align-self-center m-0">{subject}</Subject>
+        <Subject darkTheme={darkTheme} className="align-self-center m-0">
+          {subject}
+        </Subject>
       </div>
     )
   );

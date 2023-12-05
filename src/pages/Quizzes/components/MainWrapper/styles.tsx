@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<{
+  darkTheme: boolean;
+}>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,6 +11,8 @@ export const Wrapper = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   height: 100vh;
+  background-color: ${({ darkTheme, theme }) =>
+    darkTheme ? theme.colors.navy : theme.colors.white};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     justify-content: center;
