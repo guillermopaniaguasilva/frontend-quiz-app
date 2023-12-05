@@ -1,4 +1,5 @@
 import { useIsDesktopQuery } from 'hooks/useMediaQuery';
+import { useEffect, useState } from 'react';
 import Button from 'ui-library/Button';
 import DesktopLayout from 'ui-library/TwoColumnLayout';
 import { useQuizzStore } from '../../store';
@@ -7,13 +8,20 @@ import {
   BoldedTitle,
   Number,
   ResultCard,
+  ResultWrapper,
   Title,
   TotalQuestions,
 } from './styles';
 
 export default function Score() {
+  const [fadeIn, setFadeIn] = useState<boolean>(false);
+
   const score = useQuizzStore((state) => state.score);
   const isDesktop = useIsDesktopQuery();
+
+  useEffect(() => {
+    setFadeIn(true);
+  }, []);
 
   const title = (
     <>
@@ -36,15 +44,19 @@ export default function Score() {
     </>
   );
 
-  return isDesktop ? (
-    <DesktopLayout>
-      {title}
-      {result}
-    </DesktopLayout>
-  ) : (
-    <>
-      {title}
-      {result}
-    </>
+  return (
+    <ResultWrapper className={`${fadeIn ? 'fade-in' : ''}`}>
+      {isDesktop ? (
+        <DesktopLayout>
+          {title}
+          {result}
+        </DesktopLayout>
+      ) : (
+        <>
+          {title}
+          {result}
+        </>
+      )}
+    </ResultWrapper>
   );
 }

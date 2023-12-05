@@ -15,7 +15,7 @@ export default function Quiz({ data, setSubject }: QuizProps) {
     setSubject && setSubject();
   }, [setSubject]);
 
-  if (currentQuestion === 10) return <Score />;
+  if (currentQuestion === 2) return <Score />;
 
   return (
     <Question

@@ -52,3 +52,13 @@ export const TotalQuestions = styled.small`
   font-weight: 400;
   line-height: 150%; /* 36px */
 `;
+
+export const ResultWrapper = styled.div`
+  width: 100%;
+  opacity: 0; /* Set initial opacity to 0 */
+  transition: opacity 1s ease-in; /* Add transition for opacity */
+
+  &.fade-in {
+    opacity: 1;
+  }
+`;
