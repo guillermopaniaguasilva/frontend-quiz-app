@@ -1,3 +1,4 @@
+import { useIsDesktopQuery } from 'hooks/useMediaQuery';
 import { Container, Letter } from './styles';
 
 type BadgeProps = {
@@ -13,10 +14,17 @@ export default function Badge({
   backgroundColor,
   label,
 }: BadgeProps): JSX.Element {
+  const isDesktop = useIsDesktopQuery();
+
   return (
     <Container backgroundcolor={backgroundColor}>
       {source ? (
-        <img src={source} alt={alt} width={21} height={21} />
+        <img
+          src={source}
+          alt={alt}
+          width={isDesktop ? 56 : 21}
+          height={isDesktop ? 56 : 21}
+        />
       ) : (
         <Letter>{label}</Letter>
       )}

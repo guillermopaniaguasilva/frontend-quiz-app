@@ -6,6 +6,12 @@ export const Title = styled.h4`
   font-style: normal;
   font-weight: 500;
   line-height: 120%; /* 24px */
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    font-size: 36px;
+    line-height: 120%; /* 43.2px */
+    margin-top: 27px;
+  }
 `;
 
 export const NumberOfQuestion = styled.small`

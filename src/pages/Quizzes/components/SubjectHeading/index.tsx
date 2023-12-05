@@ -4,6 +4,7 @@ import htmlIcon from 'assets/icon-html.svg';
 import jsIcon from 'assets/icon-js.svg';
 import Badge from 'ui-library/Badge';
 import { useQuizzStore } from '../../store';
+import { Subject } from './styles';
 
 type IconDictionary = {
   [key: string]: [string, string];
@@ -24,13 +25,16 @@ export default function SubjectHeading({ className }: SubjectHeadingProps) {
 
   return (
     subject && (
-      <div className={`d-flex ${className}`} style={{ gap: '16px' }}>
+      <div
+        className={`d-flex ${className ? className : ''}`}
+        style={{ gap: '16px' }}
+      >
         <Badge
           source={iconDictionary[subject][0]}
           backgroundColor={iconDictionary[subject][1]}
           alt="test"
         />
-        <p className="align-self-center m-0">{subject}</p>
+        <Subject className="align-self-center m-0">{subject}</Subject>
       </div>
     )
   );

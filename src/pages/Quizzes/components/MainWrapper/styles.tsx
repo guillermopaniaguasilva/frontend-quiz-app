@@ -9,8 +9,21 @@ export const Wrapper = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   height: 100vh;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    justify-content: center;
+  }
 `;
 
 export const Main = styled.main`
   width: calc(100% - 48px);
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 85px;
+    width: calc(100% - 280px);
+  }
 `;

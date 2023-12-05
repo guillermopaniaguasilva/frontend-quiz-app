@@ -6,6 +6,10 @@ export const Title = styled.h1`
   line-height: 100%;
   font-weight: 300;
   color: ${({ theme }) => theme.colors.darkNavy};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    margin-top: 0;
+  }
 `;
 
 export const BoldedTitle = styled.span`
@@ -23,4 +27,8 @@ export const Description = styled.p`
   color: ${({ theme }) => theme.colors.greyNavy};
   margin-bottom: 40px;
   margin-top: 16px;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    margin-top: 48px;
+  }
 `;

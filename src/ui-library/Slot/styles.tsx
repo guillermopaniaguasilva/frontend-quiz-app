@@ -9,4 +9,13 @@ export const Container = styled.div`
   padding: 12px;
   gap: 16px;
   cursor: pointer;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    color: ${({ theme }) => theme.colors.darkNavy};
+    padding: 20px;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%; /* 28px */
+  }
 `;

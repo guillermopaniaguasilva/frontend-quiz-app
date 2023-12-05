@@ -28,6 +28,13 @@ export const ResultCard = styled.div`
   border-radius: 12px;
   background: ${({ theme }) => theme.colors.white};
   box-shadow: 0px 16px 40px 0px rgba(143, 160, 193, 0.14);
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    max-width: 564px;
+    padding: 48px;
+    height: 388px;
+    justify-content: center;
+  }
 `;
 
 export const Number = styled.p`
@@ -36,4 +43,12 @@ export const Number = styled.p`
   font-style: normal;
   font-weight: 500;
   line-height: 100%; /* 88px */
+`;
+
+export const TotalQuestions = styled.small`
+  color: ${({ theme }) => theme.colors.greyNavy};
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 36px */
 `;

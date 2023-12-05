@@ -9,10 +9,7 @@ export const StyledSlot = styled(Slot)<{
   isWrong: boolean;
 }>`
   border: 3px solid ${({ borderColor }) => borderColor};
-  color: ${({ theme, isSelected, isCorrect, isWrong }) =>
-    isSelected || isCorrect || isWrong
-      ? theme.colors.darkNavy
-      : theme.colors.greyNavy};
+  color: ${({ theme }) => theme.colors.darkNavy};
 
   ${Letter} {
     color: ${({ theme, isSelected, isCorrect, isWrong }) =>

@@ -6,6 +6,7 @@
   "engines": {
     "node": "18.x"
   },
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

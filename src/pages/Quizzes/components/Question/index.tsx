@@ -1,10 +1,12 @@
 import iconError from 'assets/icon-error.svg';
+import { useIsDesktopQuery } from 'hooks/useMediaQuery';
 import { useRef, useState } from 'react';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import { QuizzQuestion } from 'types/quiz';
 import Button from 'ui-library/Button';
 import ProgressBar from 'ui-library/ProgressBar';
 import QuestionOption from 'ui-library/QuestionOption';
+import DesktopLayout from 'ui-library/TwoColumnLayout';
 import { useQuizzStore } from '../../store';
 import {
   ErrorMessage,
@@ -41,6 +43,8 @@ export default function Question({
   const nextQuestionRef = useRef<HTMLDivElement>(null);
 
   const nodeRef = hasSubittedAnswer ? nextQuestionRef : currentQuestionRef;
+
+  const isDesktop = useIsDesktopQuery();
 
   const onSubmitAnswer = () => {
     if (selectedQuestion === '') return setIsAnswerRequiredError(true);
@@ -90,6 +94,13 @@ export default function Question({
     );
   });
 
+  const errorMessage = isAnswerRequiredError && (
+    <div className="d-flex justify-content-center align-items-center mt-2">
+      <img src={iconError} alt="AnswerRequiredError" width={32} height={32} />
+      <ErrorMessage className="m-0">Please select an answer</ErrorMessage>
+    </div>
+  );
+
   return (
     <SwitchTransition mode="out-in">
       <CSSTransition
@@ -102,33 +113,50 @@ export default function Question({
         classNames="fade"
       >
         <QuestionContainer className="w-100" ref={nodeRef}>
-          <NumberOfQuestion>{`Question ${questionNumber} of 10`}</NumberOfQuestion>
-          <Title>{question}</Title>
-          <ProgressBar
-            style={{ marginTop: '24px', marginBottom: '40px' }}
-            percentage={+questionNumber * 10}
-          />
-          {possibleAnswers}
-          {!hasSubittedAnswer ? (
-            <Button onClick={onSubmitAnswer}>Submit Answer</Button>
-          ) : +questionNumber === 10 ? (
-            <Button onClick={goToNextQuestion}>See Results</Button>
+          {/* this changes */}
+          {isDesktop ? (
+            <DesktopLayout>
+              <>
+                <NumberOfQuestion>{`Question ${questionNumber} of 10`}</NumberOfQuestion>
+                <Title>{question}</Title>
+                <ProgressBar
+                  style={{ marginTop: '164px', marginBottom: '40px' }}
+                  percentage={+questionNumber * 10}
+                />
+              </>
+              <>
+                {possibleAnswers}
+                {!hasSubittedAnswer ? (
+                  <Button onClick={onSubmitAnswer}>Submit Answer</Button>
+                ) : +questionNumber === 10 ? (
+                  <Button onClick={goToNextQuestion}>See Results</Button>
+                ) : (
+                  <Button onClick={goToNextQuestion}>Next Question</Button>
+                )}
+                {errorMessage}
+              </>
+            </DesktopLayout>
           ) : (
-            <Button onClick={goToNextQuestion}>Next Question</Button>
-          )}
-          {isAnswerRequiredError && (
-            <div className="d-flex justify-content-center align-items-center mt-2">
-              <img
-                src={iconError}
-                alt="AnswerRequiredError"
-                width={32}
-                height={32}
+            <>
+              <NumberOfQuestion>{`Question ${questionNumber} of 10`}</NumberOfQuestion>
+              <Title>{question}</Title>
+              <ProgressBar
+                style={{ marginTop: '24px', marginBottom: '40px' }}
+                percentage={+questionNumber * 10}
               />
-              <ErrorMessage className="m-0">
-                Please select an answer
-              </ErrorMessage>
-            </div>
+              {possibleAnswers}
+              {!hasSubittedAnswer ? (
+                <Button onClick={onSubmitAnswer}>Submit Answer</Button>
+              ) : +questionNumber === 10 ? (
+                <Button onClick={goToNextQuestion}>See Results</Button>
+              ) : (
+                <Button onClick={goToNextQuestion}>Next Question</Button>
+              )}
+              {errorMessage}
+            </>
           )}
+
+          {/* up to here */}
         </QuestionContainer>
       </CSSTransition>
     </SwitchTransition>
